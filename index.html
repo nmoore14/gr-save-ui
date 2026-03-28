@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SITE ALPHA &mdash; GR Field Terminal</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app">
+        <header>
+            <div class="header-title">
+                <h1>&#9762; GR // FIELD TERMINAL</h1>
+                <div class="header-subtitle">CLASSIFIED &mdash; AUTHORIZED PERSONNEL ONLY &mdash; SITE ALPHA</div>
+            </div>
+            <div class="header-actions">
+                <button id="loadSampleBtn" class="btn btn-secondary">Load Sample</button>
+                <button id="exportBtn" class="btn btn-primary" disabled>Export Report</button>
+            </div>
+        </header>
+
+        <main>
+            <!-- Input Section -->
+            <section id="inputSection" class="section">
+                <h2>// Operative Data Uplink</h2>
+                <textarea id="jsonInput" placeholder="&#x25A0; Awaiting encrypted operative data..."></textarea>
+                <button id="parseBtn" class="btn btn-primary">Decode Signal</button>
+                <div id="parseError" class="error hidden"></div>
+            </section>
+
+            <!-- Players Section -->
+            <section id="playersSection" class="section hidden">
+                <div class="section-header">
+                    <h2>// Survivor Dossiers</h2>
+                    <div class="clipboard-actions">
+                        <span id="clipboardStatus" class="clipboard-status"></span>
+                    </div>
+                </div>
+                <div id="playersContainer" class="players-grid"></div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Item Transfer Modal -->
+    <div id="transferModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>// Redistribute Supplies</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="transfer-item-preview">
+                    <span id="transferItemName"></span>
+                    <span id="transferItemAmount"></span>
+                </div>
+                <div class="transfer-options">
+                    <label>
+                        <span>Transfer to operative:</span>
+                        <select id="targetPlayerSelect"></select>
+                    </label>
+                    <label>
+                        <span>Destination cache:</span>
+                        <select id="targetInventorySelect"></select>
+                    </label>
+                    <label>
+                        <span>Quantity:</span>
+                        <input type="number" id="transferAmount" min="1" value="1">
+                    </label>
+                    <div class="transfer-actions">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="moveCheckbox">
+                            <span>Relocate (clear source)</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="cancelTransferBtn" class="btn btn-secondary">Abort</button>
+                <button id="confirmTransferBtn" class="btn btn-primary">Confirm Transfer</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

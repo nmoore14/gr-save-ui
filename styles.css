@@ -1,0 +1,893 @@
+@import url('https://fonts.googleapis.com/css2?family=Special+Elite&family=VT323&family=Share+Tech+Mono&display=swap');
+
+/* ============================================
+   GR // FIELD TERMINAL — Classified Styles
+   ============================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-primary: #080f08;
+    --bg-secondary: #0f180e;
+    --bg-tertiary: #182416;
+    --card-bg: #111a10;
+    --text-primary: #cdc7a0;
+    --text-secondary: #728060;
+    --accent: #c89428;
+    --accent-hover: #dba830;
+    --success: #4a8c5c;
+    --warning: #b85e28;
+    --danger: #8b2a2a;
+    --border: #243018;
+    --border-light: #3a5228;
+    --teal: #1c4a54;
+    --teal-light: #266878;
+}
+
+/* ============================================
+   BASE
+   ============================================ */
+
+body {
+    font-family: 'Special Elite', 'Courier New', serif;
+    background-color: var(--bg-primary);
+    background-image:
+        radial-gradient(ellipse 80% 60% at 15% 10%, rgba(28, 74, 84, 0.10) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 85% 90%, rgba(200, 148, 40, 0.05) 0%, transparent 60%);
+    color: var(--text-primary);
+    min-height: 100vh;
+}
+
+/* Subtle scanline overlay */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 3px,
+        rgba(0, 0, 0, 0.06) 3px,
+        rgba(0, 0, 0, 0.06) 4px
+    );
+    pointer-events: none;
+    z-index: 9999;
+}
+
+.app {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
+}
+
+/* ============================================
+   HEADER
+   ============================================ */
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 28px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-light);
+    border-top: 3px solid var(--accent);
+    margin-bottom: 22px;
+    position: relative;
+}
+
+/* Bottom corner brackets */
+header::before,
+header::after {
+    content: '';
+    position: absolute;
+    width: 18px;
+    height: 18px;
+}
+header::before {
+    bottom: -1px; left: -1px;
+    border-bottom: 2px solid var(--border-light);
+    border-left: 2px solid var(--border-light);
+}
+header::after {
+    bottom: -1px; right: -1px;
+    border-bottom: 2px solid var(--border-light);
+    border-right: 2px solid var(--border-light);
+}
+
+header h1 {
+    font-family: 'VT323', monospace;
+    color: var(--accent);
+    font-size: 2.1rem;
+    letter-spacing: 0.12em;
+    text-shadow: 0 0 24px rgba(200, 148, 40, 0.35);
+    line-height: 1;
+}
+
+.header-subtitle {
+    font-size: 0.6rem;
+    color: var(--text-secondary);
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    margin-top: 5px;
+    opacity: 0.7;
+}
+
+.header-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+/* ============================================
+   BUTTONS
+   ============================================ */
+
+.btn {
+    padding: 9px 20px;
+    border-radius: 0;
+    cursor: pointer;
+    font-family: 'Special Elite', serif;
+    font-size: 0.82rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: all 0.2s;
+    position: relative;
+}
+
+.btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.btn-primary {
+    background: rgba(200, 148, 40, 0.12);
+    color: var(--accent);
+    border: 1px solid var(--accent);
+}
+
+.btn-primary:hover:not(:disabled) {
+    background: rgba(200, 148, 40, 0.24);
+    box-shadow: 0 0 14px rgba(200, 148, 40, 0.2);
+}
+
+.btn-secondary {
+    background: rgba(36, 48, 24, 0.7);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-light);
+}
+
+.btn-secondary:hover:not(:disabled) {
+    background: rgba(58, 82, 40, 0.6);
+    color: var(--text-primary);
+}
+
+.btn-small {
+    padding: 5px 12px;
+    font-size: 0.72rem;
+}
+
+/* ============================================
+   SECTIONS
+   ============================================ */
+
+.section {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--border-light);
+    padding: 22px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+/* Dog-ear top-right corner */
+.section::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 0; height: 0;
+    border-style: solid;
+    border-width: 0 18px 18px 0;
+    border-color: transparent var(--bg-primary) transparent transparent;
+}
+
+.section h2 {
+    font-family: 'VT323', monospace;
+    margin-bottom: 16px;
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    border-bottom: 1px dashed var(--border-light);
+    padding-bottom: 10px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* ============================================
+   TERMINAL INPUT
+   ============================================ */
+
+#jsonInput {
+    width: 100%;
+    height: 200px;
+    padding: 14px;
+    background: #04080a;
+    border: 1px solid var(--border);
+    border-top: 2px solid var(--teal-light);
+    color: #7ab89a;
+    font-family: 'Share Tech Mono', 'Courier New', monospace;
+    font-size: 0.84rem;
+    resize: vertical;
+    margin-bottom: 15px;
+    letter-spacing: 0.03em;
+    line-height: 1.6;
+}
+
+#jsonInput::placeholder {
+    color: #1e3428;
+    font-style: italic;
+}
+
+#jsonInput:focus {
+    outline: none;
+    border-top-color: var(--teal-light);
+    box-shadow: 0 0 18px rgba(38, 104, 120, 0.18) inset;
+}
+
+.error {
+    background: rgba(139, 42, 42, 0.25);
+    color: #d08080;
+    padding: 10px 15px;
+    border: 1px solid var(--danger);
+    border-left: 3px solid #d08080;
+    margin-top: 10px;
+    font-size: 0.88rem;
+    letter-spacing: 0.04em;
+}
+
+/* ============================================
+   PLAYERS GRID
+   ============================================ */
+
+.players-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    gap: 20px;
+}
+
+/* ============================================
+   PLAYER CARD (DOSSIER)
+   ============================================ */
+
+.player-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-top: 2px solid var(--border-light);
+    padding: 20px;
+    position: relative;
+}
+
+/* Top-left corner bracket */
+.player-card::before {
+    content: '';
+    position: absolute;
+    top: -1px; left: -1px;
+    width: 16px; height: 16px;
+    border-top: 2px solid var(--accent);
+    border-left: 2px solid var(--accent);
+}
+
+/* Bottom-right corner bracket */
+.player-card::after {
+    content: '';
+    position: absolute;
+    bottom: -1px; right: -1px;
+    width: 16px; height: 16px;
+    border-bottom: 2px solid var(--border-light);
+    border-right: 2px solid var(--border-light);
+}
+
+.player-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px dashed var(--border-light);
+    position: relative;
+}
+
+.player-header::after {
+    content: '// FIELD OPERATIVE';
+    position: absolute;
+    top: 0; right: 0;
+    font-size: 0.58rem;
+    color: var(--text-secondary);
+    letter-spacing: 0.22em;
+    opacity: 0.45;
+    font-family: 'Share Tech Mono', monospace;
+}
+
+.player-name {
+    font-family: 'VT323', monospace;
+    font-size: 1.7rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-shadow: 0 0 12px rgba(200, 148, 40, 0.18);
+    line-height: 1;
+}
+
+.player-id {
+    font-size: 0.68rem;
+    color: var(--text-secondary);
+    font-family: 'Share Tech Mono', monospace;
+    margin-top: 5px;
+    letter-spacing: 0.08em;
+    opacity: 0.75;
+}
+
+/* ============================================
+   VITALS
+   ============================================ */
+
+.vitals-section {
+    margin-bottom: 18px;
+}
+
+.vitals-section h4 {
+    margin-bottom: 10px;
+    color: var(--text-secondary);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.32em;
+    font-family: 'Share Tech Mono', monospace;
+}
+
+.vitals-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+}
+
+.vital-item {
+    background: var(--bg-primary);
+    padding: 10px 8px;
+    border: 1px solid var(--border);
+    text-align: center;
+}
+
+.vital-label {
+    font-size: 0.62rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    margin-bottom: 7px;
+    font-family: 'Share Tech Mono', monospace;
+}
+
+.vital-value {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.vital-input {
+    width: 72px;
+    padding: 4px;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--border-light);
+    color: var(--text-primary);
+    text-align: center;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1.1rem;
+    transition: border-color 0.2s;
+}
+
+.vital-input:focus {
+    outline: none;
+    border-bottom-color: var(--accent);
+}
+
+/* Remove spinner arrows */
+.vital-input::-webkit-outer-spin-button,
+.vital-input::-webkit-inner-spin-button { -webkit-appearance: none; }
+.vital-input[type=number] { -moz-appearance: textfield; }
+
+.vital-health { border-left: 2px solid #7a3a3a; }
+.vital-hunger { border-left: 2px solid #7a6030; }
+.vital-thirst { border-left: 2px solid #2a5a7a; }
+
+/* ============================================
+   TABS
+   ============================================ */
+
+.tabs {
+    display: flex;
+    gap: 3px;
+    border-bottom: 1px solid var(--border-light);
+    padding-bottom: 0;
+    margin-bottom: 0;
+    flex-wrap: wrap;
+}
+
+.tab-btn {
+    padding: 7px 13px;
+    background: rgba(8, 15, 8, 0.9);
+    border: 1px solid var(--border);
+    border-bottom: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'Special Elite', serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    position: relative;
+    top: 1px;
+}
+
+.tab-btn:hover {
+    color: var(--text-primary);
+    background: rgba(24, 36, 22, 0.9);
+}
+
+.tab-btn.active {
+    background: var(--card-bg);
+    color: var(--accent);
+    border-color: var(--border-light);
+    border-bottom-color: var(--card-bg);
+}
+
+.tab-content {
+    display: none;
+    padding-top: 14px;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* ============================================
+   INVENTORY GRID & ITEMS
+   ============================================ */
+
+.inventory-section {
+    margin-bottom: 12px;
+}
+
+.collapsible-header {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 7px 10px;
+    background: var(--bg-primary);
+    border: 1px solid var(--border);
+    border-left: 2px solid var(--teal);
+    margin-bottom: 6px;
+    font-size: 0.76rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    font-family: 'Share Tech Mono', monospace;
+    transition: all 0.2s;
+}
+
+.collapsible-header:hover {
+    border-left-color: var(--teal-light);
+    color: var(--text-primary);
+}
+
+.collapsible-header .toggle-icon {
+    transition: transform 0.2s;
+    font-size: 0.65rem;
+}
+
+.collapsible-header.collapsed .toggle-icon {
+    transform: rotate(-90deg);
+}
+
+.inventory-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    gap: 6px;
+    max-height: 300px;
+    overflow-y: auto;
+    padding: 4px;
+}
+
+.inventory-grid.collapsed {
+    display: none;
+}
+
+.item-card {
+    background: var(--bg-primary);
+    padding: 8px 10px;
+    border: 1px solid var(--border);
+    font-size: 0.82rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+}
+
+.item-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 2px; height: 100%;
+    background: var(--border-light);
+    transition: background 0.2s;
+}
+
+.item-card:hover {
+    border-color: rgba(200, 148, 40, 0.5);
+    background: rgba(200, 148, 40, 0.04);
+}
+
+.item-card:hover::before {
+    background: var(--accent);
+}
+
+.item-name {
+    font-weight: normal;
+    margin-bottom: 5px;
+    word-break: break-word;
+    color: var(--text-primary);
+    letter-spacing: 0.02em;
+}
+
+.item-details {
+    display: flex;
+    justify-content: space-between;
+    color: var(--text-secondary);
+    font-size: 0.7rem;
+    font-family: 'Share Tech Mono', monospace;
+}
+
+.item-amount { color: var(--success); }
+.item-durability { color: var(--warning); }
+
+/* ============================================
+   EQUIPMENT & WEAPON SLOTS
+   ============================================ */
+
+.equipment-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(168px, 1fr));
+    gap: 6px;
+}
+
+.equipment-slot {
+    background: var(--bg-primary);
+    padding: 10px;
+    border: 1px solid var(--border);
+    border-bottom: 2px solid var(--border);
+    position: relative;
+}
+
+.equipment-slot.clickable-slot,
+.weapon-slot.clickable-slot {
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.equipment-slot.clickable-slot:hover,
+.weapon-slot.clickable-slot:hover {
+    border-color: rgba(200, 148, 40, 0.5);
+    background: rgba(200, 148, 40, 0.04);
+}
+
+.equipment-slot.clickable-slot:hover::after,
+.weapon-slot.clickable-slot:hover::after {
+    content: 'TRANSFER';
+    position: absolute;
+    bottom: 3px; right: 5px;
+    font-size: 0.54rem;
+    color: var(--accent);
+    letter-spacing: 0.18em;
+    opacity: 0.7;
+    font-family: 'Share Tech Mono', monospace;
+}
+
+.slot-type {
+    font-size: 0.6rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    margin-bottom: 5px;
+    font-family: 'Share Tech Mono', monospace;
+}
+
+.slot-item {
+    font-size: 0.82rem;
+    word-break: break-word;
+}
+
+.slot-empty {
+    color: var(--border-light);
+    font-style: italic;
+    font-size: 0.74rem;
+}
+
+.slot-details {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.68rem;
+    font-family: 'Share Tech Mono', monospace;
+    color: var(--text-secondary);
+    margin-top: 6px;
+    padding-top: 5px;
+    border-top: 1px dotted var(--border);
+}
+
+.weapon-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 6px;
+}
+
+.weapon-slot {
+    background: var(--bg-primary);
+    padding: 10px;
+    border: 1px solid var(--border);
+    border-bottom: 2px solid var(--border);
+    position: relative;
+}
+
+/* ============================================
+   MODAL
+   ============================================ */
+
+.modal {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    backdrop-filter: blur(3px);
+}
+
+.modal-content {
+    background: var(--bg-secondary);
+    width: 90%;
+    max-width: 480px;
+    border: 1px solid var(--border-light);
+    border-top: 3px solid var(--accent);
+    position: relative;
+}
+
+/* Bottom corner brackets on modal */
+.modal-content::before,
+.modal-content::after {
+    content: '';
+    position: absolute;
+    width: 12px; height: 12px;
+}
+
+.modal-content::before {
+    bottom: -1px; left: -1px;
+    border-bottom: 2px solid var(--border-light);
+    border-left: 2px solid var(--border-light);
+}
+
+.modal-content::after {
+    bottom: -1px; right: -1px;
+    border-bottom: 2px solid var(--border-light);
+    border-right: 2px solid var(--border-light);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--border);
+}
+
+.modal-header h3 {
+    font-family: 'VT323', monospace;
+    color: var(--accent);
+    font-size: 1.4rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+}
+
+.modal-close {
+    background: none;
+    border: 1px solid var(--border-light);
+    color: var(--text-secondary);
+    font-size: 1.2rem;
+    cursor: pointer;
+    width: 28px; height: 28px;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+    line-height: 1;
+}
+
+.modal-close:hover {
+    border-color: var(--warning);
+    color: var(--warning);
+}
+
+.modal-body {
+    padding: 20px;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding: 14px 20px;
+    border-top: 1px solid var(--border);
+}
+
+.transfer-item-preview {
+    background: var(--bg-primary);
+    padding: 14px;
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    margin-bottom: 18px;
+    text-align: center;
+}
+
+.transfer-item-preview #transferItemName {
+    font-family: 'VT323', monospace;
+    font-size: 1.3rem;
+    display: block;
+    margin-bottom: 4px;
+    letter-spacing: 0.1em;
+    color: var(--text-primary);
+}
+
+.transfer-item-preview #transferItemAmount {
+    color: var(--success);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.78rem;
+}
+
+.transfer-options label {
+    display: block;
+    margin-bottom: 14px;
+}
+
+.transfer-options label span {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--text-secondary);
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    font-family: 'Share Tech Mono', monospace;
+}
+
+.transfer-options select,
+.transfer-options input[type="number"] {
+    width: 100%;
+    padding: 9px 10px;
+    background: var(--bg-primary);
+    border: 1px solid var(--border);
+    border-bottom: 2px solid var(--border-light);
+    color: var(--text-primary);
+    font-family: 'Special Elite', serif;
+    font-size: 0.9rem;
+    border-radius: 0;
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+.transfer-options select:focus,
+.transfer-options input:focus {
+    outline: none;
+    border-bottom-color: var(--accent);
+}
+
+.checkbox-label {
+    display: flex !important;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    padding: 9px 10px;
+    border: 1px solid var(--border);
+    transition: border-color 0.2s;
+}
+
+.checkbox-label:hover {
+    border-color: var(--border-light);
+}
+
+.checkbox-label input {
+    width: auto !important;
+    accent-color: var(--accent);
+}
+
+/* ============================================
+   STATUS NOTIFICATION
+   ============================================ */
+
+.clipboard-status {
+    font-size: 0.72rem;
+    color: var(--success);
+    opacity: 0;
+    transition: opacity 0.3s;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-family: 'Share Tech Mono', monospace;
+}
+
+.clipboard-status.show {
+    opacity: 1;
+}
+
+/* ============================================
+   SCROLLBAR
+   ============================================ */
+
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb { background: var(--border-light); }
+::-webkit-scrollbar-thumb:hover { background: var(--text-secondary); }
+
+/* ============================================
+   LOCATION SECTION
+   ============================================ */
+
+.location-section { margin-bottom: 15px; }
+
+.location-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+}
+
+.location-item {
+    background: var(--bg-primary);
+    padding: 8px;
+    border: 1px solid var(--border);
+    text-align: center;
+}
+
+.location-label {
+    font-size: 0.62rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-family: 'Share Tech Mono', monospace;
+}
+
+.location-value {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.88rem;
+    color: var(--text-primary);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 768px) {
+    .players-grid { grid-template-columns: 1fr; }
+    .vitals-grid { grid-template-columns: 1fr; }
+    .inventory-grid { grid-template-columns: 1fr; }
+    header { flex-direction: column; gap: 14px; text-align: center; }
+    .tabs { gap: 2px; }
+    .tab-btn { padding: 6px 10px; font-size: 0.68rem; }
+}

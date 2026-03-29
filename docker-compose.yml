@@ -1,0 +1,24 @@
+services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - db-data:/data
+    environment:
+      - DB_PATH=/data/gr.sqlite
+    restart: unless-stopped
+
+  admin:
+    image: coleifer/sqlite-web
+    ports:
+      - "8080:8080"
+    volumes:
+      - db-data:/data
+    command: ["-H", "0.0.0.0", "-x", "/data/gr.sqlite"]
+    restart: unless-stopped
+    depends_on:
+      - app
+
+volumes:
+  db-data:

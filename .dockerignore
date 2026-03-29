@@ -1,0 +1,7 @@
+GR_Saves/
+.git/
+.jj/
+*.md
+.gitignore
+docker-compose.yml
+.dockerignore

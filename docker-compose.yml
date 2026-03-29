@@ -5,6 +5,10 @@ services:
       - "3000:3000"
     volumes:
       - db-data:/data
+      - ./index.html:/app/index.html
+      - ./app.js:/app/app.js
+      - ./styles.css:/app/styles.css
+      - ./server.ts:/app/server.ts
     environment:
       - DB_PATH=/data/gr.sqlite
     restart: unless-stopped

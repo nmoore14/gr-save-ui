@@ -37,6 +37,10 @@ class SaveEditor {
         this.confirmTransferBtn = document.getElementById('confirmTransferBtn');
         this.cancelTransferBtn = document.getElementById('cancelTransferBtn');
 
+        // Export modal
+        this.exportModal = document.getElementById('exportModal');
+        this.exportOutput = document.getElementById('exportOutput');
+
         // Clipboard status
         this.clipboardStatus = document.getElementById('clipboardStatus');
     }
@@ -46,12 +50,20 @@ class SaveEditor {
         this.exportBtn.addEventListener('click', () => this.exportSave());
         this.loadSampleBtn.addEventListener('click', () => this.loadSample());
 
-        // Modal events
-        document.querySelector('.modal-close').addEventListener('click', () => this.closeModal());
+        // Transfer modal events
+        document.getElementById('transferModal').querySelector('.modal-close').addEventListener('click', () => this.closeModal());
         this.cancelTransferBtn.addEventListener('click', () => this.closeModal());
         this.confirmTransferBtn.addEventListener('click', () => this.confirmTransfer());
         this.transferModal.addEventListener('click', (e) => {
             if (e.target === this.transferModal) this.closeModal();
+        });
+
+        // Export modal events
+        document.getElementById('exportModalClose').addEventListener('click', () => this.closeExportModal());
+        document.getElementById('closeExportBtn').addEventListener('click', () => this.closeExportModal());
+        document.getElementById('copyExportBtn').addEventListener('click', () => this.copyExportOutput());
+        this.exportModal.addEventListener('click', (e) => {
+            if (e.target === this.exportModal) this.closeExportModal();
         });
 
         // Target player change
@@ -799,25 +811,36 @@ class SaveEditor {
     }
 
     exportSave() {
-        // Update the raw save data with modified values
-        const properties = this.saveData?.root?.properties ?? this.saveData?.properties;
-        const playerSavesKey = Object.keys(properties).find(k => k.startsWith('PlayerSaves_'));
-
-        // The raw data is already updated in place, so we just need to stringify
         const jsonStr = JSON.stringify(this.saveData, null, 2);
 
-        // Create download
-        const blob = new Blob([jsonStr], { type: 'application/json' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = `save_modified_${Date.now()}.json`;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
+        const modal = document.getElementById('exportModal');
+        const output = document.getElementById('exportOutput');
+        output.value = jsonStr;
+        modal.classList.remove('hidden');
+        output.select();
+    }
 
-        this.showClipboardStatus('Save exported!');
+    closeExportModal() {
+        this.exportModal.classList.add('hidden');
+        this.exportOutput.value = '';
+    }
+
+    async copyExportOutput() {
+        try {
+            await navigator.clipboard.writeText(this.exportOutput.value);
+        } catch {
+            this.exportOutput.select();
+            document.execCommand('copy');
+        }
+        this.showToast('Copied to clipboard!');
+    }
+
+    showToast(message) {
+        const toast = document.getElementById('toast');
+        toast.textContent = message;
+        toast.classList.add('show');
+        clearTimeout(this._toastTimer);
+        this._toastTimer = setTimeout(() => toast.classList.remove('show'), 2500);
     }
 
     async loadSample() {
